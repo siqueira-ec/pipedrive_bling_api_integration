@@ -11,6 +11,7 @@ const validateEnv = (): void => {
     BLING_API_KEY: str(),
     PIPEDRIVE_API_URL: str(),
     PIPEDRIVE_API_KEY: str(),
+    JOB_TIME: str(),
   });
 };
 
