@@ -17,7 +17,7 @@ class OpportunityController {
 
   public intializeRoutes(): void {
     this.router.post(this.path, this.saveWonOpportunities);
-    this.router.get(`${this.path}`, this.getOpportunitiesAggregatedPerDate);
+    this.router.get(this.path, this.getOpportunitiesAggregatedPerDate);
   }
 
   saveWonOpportunities = async (
@@ -44,7 +44,7 @@ class OpportunityController {
               clientName: org_name,
               serviceName: title,
               productCount: products_count,
-              totalValue: value,
+              totalValueInBRL: value,
               currency,
             },
           };
@@ -80,7 +80,7 @@ class OpportunityController {
               currency: '$currency',
             },
             count: { $sum: 1 },
-            value: { $sum: '$totalValue' },
+            value: { $sum: '$totalValueInBRL' },
           },
         },
       ]);

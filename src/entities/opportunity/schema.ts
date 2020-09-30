@@ -5,7 +5,7 @@ const OpportunitySchema = new Schema({
   clientName: { type: String, required: true },
   serviceName: { type: String, required: true },
   productCount: { type: Number, required: true },
-  totalValue: { type: Number, required: true },
+  totalValueInBRL: { type: Number, required: true },
   currency: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
 });

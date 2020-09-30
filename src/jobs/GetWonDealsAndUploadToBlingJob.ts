@@ -31,7 +31,7 @@ class GetWonDealsAndUploadToBlingJob {
                 clientName: org_name,
                 serviceName: title,
                 productCount: products_count,
-                totalValue: value,
+                totalValueInBRL: value,
                 currency,
               },
             };

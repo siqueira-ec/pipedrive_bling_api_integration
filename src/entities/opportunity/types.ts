@@ -5,7 +5,7 @@ export interface IOpportunity {
   clientName: string;
   serviceName: string;
   productCount: number;
-  totalValue: number;
+  totalValueInBRL: number;
   currency: string;
 }
 
