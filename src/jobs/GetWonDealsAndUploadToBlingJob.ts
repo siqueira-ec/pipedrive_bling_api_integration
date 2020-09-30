@@ -33,6 +33,7 @@ class GetWonDealsAndUploadToBlingJob {
                 productCount: products_count,
                 totalValueInBRL: value,
                 currency,
+                createdAt: new Date(),
               },
             };
             const options = { upsert: true };
