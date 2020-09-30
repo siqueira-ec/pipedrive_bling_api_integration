@@ -1,8 +1,8 @@
 import express, { Application } from 'express';
 import { json } from 'body-parser';
 import { connect, disconnect, Connection, connection } from 'mongoose';
-import 'dotenv/config';
 import IController from './controllers/types';
+import GetWonDealsAndUploadToBlingJob from './jobs/GetWonDealsAndUploadToBlingJob';
 
 class App {
   public app: Application;
@@ -28,6 +28,8 @@ class App {
   }
 
   public listen(): void {
+    GetWonDealsAndUploadToBlingJob.getWonDealsAndUploadToBling();
+
     const { PORT } = process.env;
 
     this.app.listen(PORT, () => {
