@@ -1,5 +1,5 @@
 import App from './App';
-import OpportunityController from './controllers/opportunity/controller';
+import OpportunityController from './controllers/OpportunityController';
 import 'dotenv/config';
 
 import validateEnv from './utils/validateEnv';

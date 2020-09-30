@@ -2,9 +2,9 @@ import { Router, Request, Response } from 'express';
 import {
   getDealsWithWonStatus,
   getProductsFromDealsWithWonStatus,
-} from '../../services/pipedrive/deals';
-import { OpportunityModel } from '../../entities/opportunity/model';
-import { uploadToBling } from '../../services/bling/order';
+} from '../services/pipedrive/deals';
+import { OpportunityModel } from '../entities/opportunity/model';
+import { uploadToBling } from '../services/bling/order';
 
 class OpportunityController {
   public path = '/opportunity';
@@ -21,12 +21,12 @@ class OpportunityController {
   }
 
   saveWonOpportunities = async (
-    request: Request,
+    _request: Request,
     response: Response,
   ): Promise<void> => {
-    const opportunities = await getDealsWithWonStatus();
-
     try {
+      const opportunities = await getDealsWithWonStatus();
+
       await Promise.all(
         opportunities.map(opportunity => {
           const {
@@ -53,17 +53,16 @@ class OpportunityController {
         }),
       );
 
+      const wonDealsProductsArray = await getProductsFromDealsWithWonStatus(
+        opportunities,
+      );
+
+      uploadToBling(wonDealsProductsArray);
+
       response.status(200).json(opportunities);
     } catch (error) {
-      console.error(error);
       response.status(500).send(error);
     }
-
-    const wonDealsProductsArray = await getProductsFromDealsWithWonStatus(
-      opportunities,
-    );
-
-    uploadToBling(wonDealsProductsArray);
   };
 
   getOpportunitiesAggregatedPerDate = async (
@@ -88,7 +87,6 @@ class OpportunityController {
 
       response.status(200).json(aggregatedOpportunities);
     } catch (error) {
-      console.error(error);
       response.status(500).send(error);
     }
   };
