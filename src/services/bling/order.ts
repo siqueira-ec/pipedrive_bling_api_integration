@@ -40,23 +40,25 @@ const parseBlingOrderXML = (dealWithProductsObj: IDealWithProducts): string => {
 export const uploadToBling = async (
   dealWithProductsObjArray: IDealWithProducts[],
 ): Promise<void> => {
-  await Promise.all(
-    dealWithProductsObjArray.map(async dealWithProductsObj => {
-      const testeXML = parseBlingOrderXML(dealWithProductsObj);
+  try {
+    await Promise.all(
+      dealWithProductsObjArray.map(async dealWithProductsObj => {
+        const testeXML = parseBlingOrderXML(dealWithProductsObj);
 
-      try {
         await api.post(
           '',
           qs.stringify({
             xml: testeXML,
             apikey: process.env.BLING_API_KEY,
           }),
-          { headers: { 'content-type': 'application/x-www-form-urlencoded' } },
+          {
+            headers: { 'content-type': 'application/x-www-form-urlencoded' },
+          },
         );
-      } catch (error) {
-        console.error(error);
-        throw error;
-      }
-    }),
-  );
+      }),
+    );
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };
