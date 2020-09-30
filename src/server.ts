@@ -1,17 +1,12 @@
-import express, { Request, Response } from 'express';
+import App from './App';
+import OpportunityController from './controllers/opportunity/controller';
+import 'dotenv/config';
 
-const app = express();
+import validateEnv from './utils/validateEnv';
 
-app.get('/', (req: Request, res: Response) =>
-  res.json({
-    message: 'Hello, world!',
-  }),
-);
+// validate env variables
+validateEnv();
 
-const port = process.env.PORT || 3333;
+const app = new App([new OpportunityController()]);
 
-app.listen(port, () => {
-  console.log(
-    `Server running in ${process.env.BASE_URL || 'localhost'}:${port}`,
-  );
-});
+app.listen();

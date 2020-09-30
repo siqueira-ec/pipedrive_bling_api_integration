@@ -10,7 +10,9 @@
     "dotenv": "^8.2.0",
     "envalid": "^6.0.2",
     "express": "^4.17.1",
-    "mongoose": "^5.10.7"
+    "mongoose": "^5.10.7",
+    "qs": "^6.9.4",
+    "xmlbuilder": "^15.1.1"
   },
   "scripts": {
     "build": "tsc",
