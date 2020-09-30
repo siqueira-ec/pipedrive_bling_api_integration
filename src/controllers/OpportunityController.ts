@@ -46,6 +46,7 @@ class OpportunityController {
               productCount: products_count,
               totalValueInBRL: value,
               currency,
+              createdAt: new Date(),
             },
           };
           const options = { upsert: true };
@@ -80,7 +81,7 @@ class OpportunityController {
               currency: '$currency',
             },
             count: { $sum: 1 },
-            value: { $sum: '$totalValueInBRL' },
+            totalValueBRL: { $sum: '$totalValueInBRL' },
           },
         },
       ]);

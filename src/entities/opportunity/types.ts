@@ -7,6 +7,7 @@ export interface IOpportunity {
   productCount: number;
   totalValueInBRL: number;
   currency: string;
+  createdAt: Date;
 }
 
 export interface IOpportunityDocument extends IOpportunity, Document {}

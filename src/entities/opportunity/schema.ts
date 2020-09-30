@@ -7,7 +7,7 @@ const OpportunitySchema = new Schema({
   productCount: { type: Number, required: true },
   totalValueInBRL: { type: Number, required: true },
   currency: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
+  createdAt: { type: Date, default: Date.now, required: true },
 });
 
 export default OpportunitySchema;
