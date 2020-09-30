@@ -67,7 +67,7 @@ Wrapper around **Pipedrive** and **Bling** APIs to integrate them. Built as Link
   - NPM:
 
     ```bash
-    npm start
+    npm run dev
     ```
 
   - YARN:
