@@ -6,10 +6,18 @@ import api from './api';
 const parseBlingOrderXML = (dealWithProductsObj: IDealWithProducts): string => {
   const blingProductXML = create('root');
 
+  const date = new Date(`${dealWithProductsObj.won_time}`);
+  const formattedDate = `${`0${date.getDate()}`.substr(-2)}/${`0${
+    date.getMonth() + 1
+  }`.substr(-2)}/${date.getFullYear()}`;
+
   blingProductXML
     .ele('pedido')
     .ele('numero')
     .txt(dealWithProductsObj.id.toString())
+    .up()
+    .ele('data')
+    .txt(formattedDate)
     .up()
     .ele('cliente')
     .ele('nome')
@@ -43,12 +51,12 @@ export const uploadToBling = async (
   try {
     await Promise.all(
       dealWithProductsObjArray.map(async dealWithProductsObj => {
-        const testeXML = parseBlingOrderXML(dealWithProductsObj);
+        const orderXML = parseBlingOrderXML(dealWithProductsObj);
 
         await api.post(
           '',
           qs.stringify({
-            xml: testeXML,
+            xml: orderXML,
             apikey: process.env.BLING_API_KEY,
           }),
           {

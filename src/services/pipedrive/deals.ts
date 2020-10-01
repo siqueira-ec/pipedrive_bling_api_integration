@@ -18,7 +18,16 @@ const getDealsWithWonStatus = async (): Promise<IDeal[]> => {
     ).data;
 
     const wonDealsObjArray = wonDeals.map(deal => {
-      const { id, org_name, title, products_count, value, currency } = deal;
+      const {
+        id,
+        org_name,
+        title,
+        products_count,
+        value,
+        currency,
+        won_time,
+        deal_id,
+      } = deal;
 
       return {
         id,
@@ -27,6 +36,8 @@ const getDealsWithWonStatus = async (): Promise<IDeal[]> => {
         products_count,
         value,
         currency,
+        won_time,
+        deal_id,
       };
     });
 
@@ -57,9 +68,20 @@ const getProductsFromDealsWithWonStatus = async (
             quantity,
             item_price,
             product_id,
+            won_time,
+            deal_id,
             product: { id, name, description },
           }) => {
-            return { id, name, description, quantity, item_price, product_id };
+            return {
+              id,
+              name,
+              description,
+              quantity,
+              item_price,
+              product_id,
+              won_time,
+              deal_id,
+            };
           },
         );
 
