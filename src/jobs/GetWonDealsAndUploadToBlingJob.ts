@@ -23,6 +23,7 @@ class GetWonDealsAndUploadToBlingJob {
               products_count,
               value,
               currency,
+              won_time,
             } = opportunity;
             const query = { opportunityId: id };
             const update = {
@@ -33,7 +34,7 @@ class GetWonDealsAndUploadToBlingJob {
                 productCount: products_count,
                 totalValueInBRL: value,
                 currency,
-                createdAt: new Date(),
+                createdAt: new Date(won_time),
               },
             };
             const options = { upsert: true };

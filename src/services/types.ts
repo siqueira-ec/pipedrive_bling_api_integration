@@ -1,10 +1,12 @@
 interface IDeal {
   id: number;
+  deal_id: number;
   title: string;
   value: number;
   currency: string;
   products_count: number;
   org_name: string;
+  won_time: string;
 }
 
 interface IPipedriveDealsResponse {
@@ -35,6 +37,7 @@ interface IPipedriveProductsResponse {
       product: IProduct;
       item_price: number;
       product_id: number;
+      won_time: string;
     },
   ];
   additional_data: {

@@ -36,6 +36,7 @@ class OpportunityController {
             products_count,
             value,
             currency,
+            won_time,
           } = opportunity;
           const query = { opportunityId: id };
           const update = {
@@ -46,7 +47,7 @@ class OpportunityController {
               productCount: products_count,
               totalValueInBRL: value,
               currency,
-              createdAt: new Date(),
+              createdAt: new Date(won_time),
             },
           };
           const options = { upsert: true };
@@ -78,7 +79,6 @@ class OpportunityController {
               date: {
                 $dateToString: { format: '%d-%m-%Y', date: '$createdAt' },
               },
-              currency: '$currency',
             },
             count: { $sum: 1 },
             totalValueBRL: { $sum: '$totalValueInBRL' },
